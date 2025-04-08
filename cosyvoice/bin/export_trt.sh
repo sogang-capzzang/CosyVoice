@@ -18,7 +18,7 @@ $TRT_DIR/bin/trtexec --onnx=$MODEL_DIR/flow.decoder.estimator.fp32.onnx \
                      --maxShapes=x:2x80x$out_dim,mask:2x1x$out_dim,mu:2x80x$out_dim,cond:2x80x$out_dim \
                      --inputIOFormats=fp32:chw,fp32:chw,fp32:chw,fp32:chw,fp32:chw,fp32:chw \
                      --outputIOFormats=fp32:chw \
-                     --verbose
+                     --verbose \
                      --optShapes=x:2x80x193,mask:2x1x193,mu:2x80x193,cond:2x80x193 \
 
 # onnx_fp32-> trt_fp16
@@ -28,5 +28,5 @@ $TRT_DIR/bin/trtexec --onnx=$MODEL_DIR/flow.decoder.estimator.fp32.onnx \
                      --minShapes=x:2x80x4,mask:2x1x4,mu:2x80x4,cond:2x80x4 \
                      --maxShapes=x:2x80x6800,mask:2x1x6800,mu:2x80x6800,cond:2x80x6800 \
                      --inputIOFormats=fp16:chw,fp16:chw,fp16:chw,fp16:chw,fp16:chw,fp16:chw \
-                     --outputIOFormats=fp16:chw
-                     --optShapes=x:2x80x193,mask:2x1x193,mu:2x80x193,cond:2x80x193:
+                     --outputIOFormats=fp16:chw \
+                     --optShapes=x:2x80x193,mask:2x1x193,mu:2x80x193,cond:2x80x193
