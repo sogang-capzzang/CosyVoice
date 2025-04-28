@@ -4,13 +4,13 @@ function usage(
         echo "Usage: $0 [--port PORT] [--model_dir MODEL_DIR]"
         echo "Options:"
         echo "  --model_dir   Specify the model directory (default: pretrained_models/CosyVoice2-0.5B-trt)"
-        echo "  --port PORT   Specify the port number for the server (default: 21559)"
+        echo "  --port PORT   Specify the port number for the server (default: 8080)"
     }
 )
 
 usage
 MODEL_DIR="pretrained_models/CosyVoice2-0.5B-trt"
-PORT=21559
+PORT=8080
 while [[ $# -gt 0 ]]; do
     case $1 in
         --model_dir)

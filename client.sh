@@ -4,7 +4,7 @@ function usage(
         echo "Usage: $0 [--host HOST] [--port PORT] [--person PERSON]"
         echo "Options:"
         echo "  --host HOST   Specify the host IP address"
-        echo "  --port PORT   Specify the port number for the server (default: 21559)"
+        echo "  --port PORT   Specify the port number for the server (default: 8080)"
         echo "  --save SAVE   Specify the save path for the output (default: /tmp/tts.wav)"
         echo "  --person PERSON Specify the person name (default: woon)"
         echo ""
@@ -12,7 +12,7 @@ function usage(
 )
 
 usage
-PORT=21559
+PORT=8080
 PERSON=woon
 while [[ $# -gt 0 ]]; do
     case $1 in

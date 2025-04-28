@@ -78,7 +78,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--port',
                         type=int,
-                        default=21559)
+                        default=8080)
     parser.add_argument('--model_dir',
                         type=str,
                         default='pretrained_models/CosyVoice2-0.5B-trt',
