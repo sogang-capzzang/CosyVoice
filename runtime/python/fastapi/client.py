@@ -50,7 +50,7 @@ if __name__ == "__main__":
                         default='0.0.0.0')
     parser.add_argument('--port',
                         type=int,
-                        default='21559')
+                        default='8080')
     parser.add_argument('--tts_text',
                         type=str,
                         default='"세상은 매일 진화하고 있습니다. AI는 이제 단순한 도구가 아니라, 우리 삶의 일부가 되었죠. 오늘, 그 놀라운 변화를 함께 만나봅니다."')
