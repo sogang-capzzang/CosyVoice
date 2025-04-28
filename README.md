@@ -5,50 +5,53 @@
 
 **CosyVoice 1.0**: [Demos](https://fun-audio-llm.github.io); [Paper](https://funaudiollm.github.io/pdf/CosyVoice_v1.pdf); [Modelscope](https://www.modelscope.cn/studios/iic/CosyVoice-300M)
 
-## 1. 초기 설정
+## 1. Usage
+### prerequisite
+- CUDA >= 12.4
+- nvidia container toolkit
+- docker
 
+### Clone docker image
+```bash
+docker pull goldrunn/cosyvoice_mjkim
+docker run —gpus all -p 8080:8080 —user root —rm -it goldrunn/cosyvoice_mjkim
+```
+### At the container
 ```bash
 cd /workspace/CosyVoice
 conda activate cosyvoice
-./vast.sh
-```
-without vast.sh, you can also follow intructions below
-```bash
 git checkout main
 git pull
 sudo apt-get install vim unzip -y
 tar -xvf test.tar.gz
 cp ./pretrained_models/CosyVoice2-0.5B ./pretrained_models/CosyVoice2-0.5B-trt -r
 ./cosyvoice/bin/export_trt.sh
-mkdir -p ./prompt_wav_cache
 cd pretrained_models/CosyVoice-ttsfrd
 unzip resource.zip -d . && \
+cd -
 pip install ttsfrd_dependency-0.1-py3-none-any.whl
 pip install ttsfrd-0.4.2-cp310-cp310-linux_x86_64.whl
+
+# if some selection page are open please enter 'N'
+
 ```
 ---
 
-## 2. pre_tokenized 사용법
-
-사용자 프롬프트 음성을 캐싱하는 파이썬 코드
-
+## 2. 사용자 프롬프트 토큰을 생성
+- `./voice/$NAME/prompt.txt`, `./voice/$NAME/prompt.wav` 경로에 파일 넣기
+- 정상적인 텍스트로 10초 가량의 차분한 목소리를 녹음하고 사용 하였을때 가장 좋은 결과를 도출 할 수 있음
 
 ```bash
-python3 pre_tokenized.py --model_dir [사용할 모델] --name [사용자 이름]
-# ex) python3 pre_tokenized.py --model_dir pretrained_models/CosyVoice2-0.5B-trt --name woon
+mkdir -p ./prompt_wav_cache
+python3 pre_tokenized.py --name $NAME
+# ex) python3 pre_tokenizer.py --name woon
 ```
 
 
 ---
-## 3. test_cache 및 test_cache_while 실행시 설정
-```bash
-# ====== 사용자 설정 부분 ======
-DEBUG = True  # 성능 측정 활성화 여부
-use_stream = True  # 스트리밍 모드 사용 여부
-model_dir = 'pretrained_models/CosyVoice2-0.5B-trt'  # 모델 경로
-cache_path = '/workspace/CosyVoice/prompt_wav_cache/woon.pt'  # 캐시 파일 경로
-output_file = './test/results/stream_go_{}.wav'  # 출력 파일 이름 포맷
-# ===============================
+## 3. server.sh 사용 방법 (fastapi)
+``` bash
+./server.sh --port [PORT]
 ```
-
-
+- `IP:PORT/inference_zero_shot_use_cache` 로 HTTP request
+- [Client](https://github.com/sogang-capzzang/WSL-Application) 설정에 이를 반영해야함
