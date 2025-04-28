@@ -41,12 +41,3 @@ python3 pre_tokenized.py --model_dir [사용할 모델] --name [사용자 이름
 
 ---
 
-## 3. test_cache.py 사용법
-
-- `test_cache.py` 
-
-```bash
-python3 test_cache.py
-```
-
----
