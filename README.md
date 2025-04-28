@@ -3,8 +3,6 @@
 ## 👉🏻 CosyVoice 👈🏻
 **CosyVoice 2.0**: [Demos](https://funaudiollm.github.io/cosyvoice2/); [Paper](https://arxiv.org/abs/2412.10117); [Modelscope](https://www.modelscope.cn/studios/iic/CosyVoice2-0.5B); [HuggingFace](https://huggingface.co/spaces/FunAudioLLM/CosyVoice2-0.5B)
 
-**CosyVoice 1.0**: [Demos](https://fun-audio-llm.github.io); [Paper](https://funaudiollm.github.io/pdf/CosyVoice_v1.pdf); [Modelscope](https://www.modelscope.cn/studios/iic/CosyVoice-300M)
-
 ## 1. Usage
 ### prerequisite
 - CUDA >= 12.4
@@ -32,7 +30,7 @@ cd -
 pip install ttsfrd_dependency-0.1-py3-none-any.whl
 pip install ttsfrd-0.4.2-cp310-cp310-linux_x86_64.whl
 
-# if some selection page are open please enter 'N'
+# if some selection slot is opened, please enter 'N'
 
 ```
 ---
