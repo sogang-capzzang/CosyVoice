@@ -5,6 +5,7 @@ sudo apt-get install vim unzip -y
 tar -xvf test.tar.gz
 cp ./pretrained_models/CosyVoice2-0.5B ./pretrained_models/CosyVoice2-0.5B-trt -r
 ./cosyvoice/bin/export_trt.sh
+mkdir -p ./prompt_wav_cache
 cd pretrained_models/CosyVoice-ttsfrd
 unzip resource.zip -d . && \
 pip install ttsfrd_dependency-0.1-py3-none-any.whl
