@@ -40,4 +40,15 @@ python3 pre_tokenized.py --model_dir [사용할 모델] --name [사용자 이름
 
 
 ---
+## 3. test_cache 및 test_cache_while 실행시 설정
+```bash
+# ====== 사용자 설정 부분 ======
+DEBUG = True  # 성능 측정 활성화 여부
+use_stream = True  # 스트리밍 모드 사용 여부
+model_dir = 'pretrained_models/CosyVoice2-0.5B-trt'  # 모델 경로
+cache_path = '/workspace/CosyVoice/prompt_wav_cache/woon.pt'  # 캐시 파일 경로
+output_file = './test/results/stream_go_{}.wav'  # 출력 파일 이름 포맷
+# ===============================
+```
+
 
