@@ -20,7 +20,8 @@ conda activate cosyvoice
 
 
 ```bash
-python3 pre_tokenized.py --
+python3 pre_tokenized.py --model_dir [사용할 모델] --name [사용자 이름]
+# ex) python3 pre_tokenized.py --model_dir pretrained_models/CosyVoice2-0.5B-trt --name woon
 ```
 
 
