@@ -17,6 +17,7 @@ conda activate cosyvoice
 
 ## 2. pre_tokenized 사용법
 
+사용자 프롬프트 음성을 캐싱하는 파이썬 코드
 
 
 ```bash
