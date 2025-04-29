@@ -53,3 +53,11 @@ python3 pre_tokenized.py --name $NAME
 ```
 - `IP:PORT/inference_zero_shot_use_cache` 로 HTTP request
 - [Client](https://github.com/sogang-capzzang/WSL-Application) 설정에 이를 반영해야함
+
+## 4. Rule-based voice 생성 방법 (tokenize를 미리 해야함)
+
+``` bash
+mkdir -p ./rule
+python3 gen_rule_base.py --name $NAME --iter $ITER
+# python3 gen_rule_base.py --name woon --iter 5
+```
