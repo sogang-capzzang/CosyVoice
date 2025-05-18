@@ -85,7 +85,7 @@ if __name__ == '__main__':
                         help='local path or modelscope repo id')
     args = parser.parse_args()
     try:
-        cosyvoice = CosyVoice2(args.model_dir)
+        cosyvoice = CosyVoice2(args.model_dir, load_jit=False, load_trt=True, fp16=False)
     except Exception:
         raise TypeError('no valid model_type!')
     uvicorn.run(app, host="0.0.0.0", port=args.port)
