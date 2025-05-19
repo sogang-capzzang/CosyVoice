@@ -83,9 +83,16 @@ if __name__ == '__main__':
                         type=str,
                         default='pretrained_models/CosyVoice2-0.5B-trt',
                         help='local path or modelscope repo id')
+    
+    parser.add_argument('--use_vllm',
+                        type=bool,
+                        default=False,
+                        help='use vllm for inference or not')
     args = parser.parse_args()
-    try:
-        cosyvoice = CosyVoice2(args.model_dir)
+    try:    
+        from multiprocessing import freeze_support
+        freeze_support()
+        cosyvoice = CosyVoice2(args.model_dir, load_jit=False, load_trt=True, fp16=False, use_vllm=True)
     except Exception:
         raise TypeError('no valid model_type!')
     uvicorn.run(app, host="0.0.0.0", port=args.port)
