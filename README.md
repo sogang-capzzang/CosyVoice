@@ -59,9 +59,13 @@ python3 pre_tokenized.py --name $NAME
 
 
 ---
-## 3. server.sh 사용 방법 (fastapi)
+## 3. runtime/python/fastapi/server.py 사용 방법 (fastapi)
 ``` bash
-./server.sh --port [PORT]
+# no vllm inference
+python runtime/python/fastapi/server.py --port [PORT]
+
+# use vllm inference
+python runtime/python/fastapi/server.py --port [PORT] --use_vllm
 ```
 - `IP:PORT/inference_zero_shot_use_cache` 로 HTTP request
 - [Client](https://github.com/sogang-capzzang/WSL-Application) 설정에 이를 반영해야함
