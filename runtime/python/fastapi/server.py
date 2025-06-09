@@ -37,8 +37,7 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"])
-
-
+    
 def generate_data(model_output):
     for i in model_output:
         tts_audio = (i['tts_speech'].numpy() * (2 ** 15)).astype(np.int16).tobytes()
@@ -85,14 +84,13 @@ if __name__ == '__main__':
                         help='local path or modelscope repo id')
     
     parser.add_argument('--use_vllm',
-                        type=bool,
-                        default=False,
-                        help='use vllm for inference or not')
+                        action='store_true',
+                        help='Use vLLM for inference (default: False)')
     args = parser.parse_args()
     try:    
         from multiprocessing import freeze_support
         freeze_support()
-        cosyvoice = CosyVoice2(args.model_dir, load_jit=False, load_trt=True, fp16=False, use_vllm=True)
+        cosyvoice = CosyVoice2(args.model_dir, load_jit=False, load_trt=True, fp16=False, use_vllm=args.use_vllm)
     except Exception:
         raise TypeError('no valid model_type!')
     uvicorn.run(app, host="0.0.0.0", port=args.port)
