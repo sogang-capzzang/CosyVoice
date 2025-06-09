@@ -54,7 +54,7 @@ python verify_vllm.py
 ```bash
 mkdir -p ./prompt_wav_cache
 python3 pre_tokenized.py --name $NAME
-# ex) python3 pre_tokenizer.py --name woon
+# ex) python3 pre_tokenized.py --name woon
 ```
 
 
