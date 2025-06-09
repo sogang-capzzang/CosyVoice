@@ -29,10 +29,22 @@ unzip resource.zip -d . && \
 cd -
 pip install ttsfrd_dependency-0.1-py3-none-any.whl
 pip install ttsfrd-0.4.2-cp310-cp310-linux_x86_64.whl
-
+cd ../../
+pip install -r requirements_vllm.txt
+cp pretrained_models/CosyVoice2-0.5B-trt/CosyVoice-BlankEN/{config.json,tokenizer_config.json,vocab.json,merges.txt} pretrained_models/CosyVoice2-0.5B-trt/
+sed -i 's/Qwen2ForCausalLM/CosyVoice2Model/' pretrained_models/CosyVoice2-0.5B-trt/config.json
+FILE="/opt/conda/envs/cosyvoice/lib/python3.10/site-packages/deepspeed/elasticity/elastic_agent.py"
+sed -i '/^from torch\.distributed\.elastic\.agent\.server\.api import _get_socket_with_port/s/^/# /' "$FILE"
+echo -e '\n'"def _get_socket_with_port():\n    import socket\n    return socket.socket()" >> "$FILE"
 # if some selection slot is opened, please enter 'N'
 
 ```
+### Before inferencing with vllm
+```bash
+#you have to run verify_vllm.py
+python verify_vllm.py
+```
+
 ---
 
 ## 2. 사용자 프롬프트 토큰을 생성
@@ -42,15 +54,19 @@ pip install ttsfrd-0.4.2-cp310-cp310-linux_x86_64.whl
 ```bash
 mkdir -p ./prompt_wav_cache
 python3 pre_tokenized.py --name $NAME
-# ex) python3 pre_tokenizer.py --name woon
+# ex) python3 pre_tokenized.py --name woon
 ```
 
 
 ---
-## 3. server.sh 사용 방법 (fastapi)
+## 3. runtime/python/fastapi/server.py 사용 방법 (fastapi)
 ``` bash
-./server.sh --port [PORT] (vllm 사용 x)
-./server.sh --port [PORT] --use_vllm (vllm 사용 o)
+# no vllm inference
+python runtime/python/fastapi/server.py --port [PORT]
+
+# use vllm inference
+python runtime/python/fastapi/server.py --port [PORT] --use_vllm
+
 ```
 - `IP:PORT/inference_zero_shot_use_cache` 로 HTTP request
 - [Client](https://github.com/sogang-capzzang/WSL-Application) 설정에 이를 반영해야함
