@@ -41,7 +41,7 @@ echo -e '\n'"def _get_socket_with_port():\n    import socket\n    return socket.
 ```
 ### Before inferencing with vllm
 ```bash
-#you have run verify_vllm.py
+#you have to run verify_vllm.py
 python verify_vllm.py
 ```
 
