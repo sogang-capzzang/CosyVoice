@@ -87,10 +87,12 @@ if __name__ == '__main__':
                         action='store_true',
                         help='Use vLLM for inference (default: False)')
     args = parser.parse_args()
+
     try:    
         from multiprocessing import freeze_support
         freeze_support()
         cosyvoice = CosyVoice2(args.model_dir, load_jit=False, load_trt=True, fp16=False, use_vllm=args.use_vllm)
+
     except Exception:
         raise TypeError('no valid model_type!')
     uvicorn.run(app, host="0.0.0.0", port=args.port)

@@ -55,3 +55,4 @@ pretrained_models/*
 result*.json
 TensorRT-10.9.0.34/
 test/
+rule/
